@@ -8,9 +8,7 @@ public class Module7_3 implements IModule {
     @Override
     public Object[][] dataProvider() {
         return new Object[][] {
-                new Object[] {10, 1000, 3},
-                new Object[] {2, 1, 1},
-                new Object[] {100000, 1, 2}
+                new Object[] {}
         };
     }
 
