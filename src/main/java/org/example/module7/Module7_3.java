@@ -46,14 +46,19 @@ public class Module7_3 implements IModule {
 
         doGraph(nodes, n, m);
 
-        if (start == null || finish == null) {
+        String result = doPath(start, finish);
+        if (null == result) {
             System.out.println(-1);
         } else {
-            doPath(start, finish);
+            System.out.println(result.length());
+            System.out.println(result);
         }
     }
 
-    private void doPath(Node start, Node finish) {
+    private String doPath(Node start, Node finish) {
+        if (start == null || finish == null) {
+            return null;
+        }
         Map<Node, Parent> visited = new HashMap<>();
         Deque<Node> deque = new ArrayDeque<>();
         deque.add(start);
@@ -81,8 +86,7 @@ public class Module7_3 implements IModule {
         }
 
         if (!finished) {
-            System.out.println(-1);
-            return;
+            return null;
         }
         List<DIRECTION> result = new ArrayList<>();
         Node current = finish;
@@ -90,10 +94,11 @@ public class Module7_3 implements IModule {
             result.add(visited.get(current).direction);
             current = visited.get(current).parent;
         }
-        System.out.println(result.size());
+        StringBuilder builder = new StringBuilder();
         for (int i = result.size() - 1; i >=0; i--) {
-            System.out.print(result.get(i).name().charAt(0));
+            builder.append(result.get(i).name().charAt(0));
         }
+        return builder.toString();
     }
 
     private void doGraph(Map<String, Node> nodes, int n, int m) {
